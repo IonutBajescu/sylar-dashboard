@@ -1,0 +1,22 @@
+{
+  "name": "sylar-dashboard",
+  "version": "0.1",
+  "description": "Sylar's Dashboard",
+  "dependencies": {
+    "react": "^15.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IonutBajescu/sylar-dashboard.git"
+  },
+  "author": "Ionut Bajescu <ionutbajescu@gmail.com> (http://ionut-bajescu.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IonutBajescu/sylar-dashboard/issues"
+  },
+  "homepage": "https://github.com/IonutBajescu/sylar-dashboard#readme"
+}
