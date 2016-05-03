@@ -1,0 +1,55 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,400italic)
+
+$darkColor: #357b65
+
+.ui.container
+  max-width: 1024px !important
+
+h1
+  margin-top: 10px !important
+  margin-bottom: 20px !important
+
+.clearfix
+  clear: both
+
+.fixed.inverted.menu .item:last-child
+    margin-right: -1rem
+
+.content.container
+  min-height: calc(100vh - 19px - 40px)
+
+.attached.brand.segment
+  border: none
+  &, a
+    color: lighten($darkColor, 50)
+
+.brand
+  &.inverted.menu, &.inverted.segment
+    background: $darkColor
+
+h3
+  color: $darkColor !important
+
+.mt5
+  margin-top: 5rem
+
+.mt3
+  margin-top: 3rem
+
+.negative.row
+  padding: 0 !important
+
+.table
+  position: relative
+  &:before
+    content: ''
+    display: block
+    position: absolute
+    border-top: 4px solid $darkColor
+    top: -4px
+    left: -1px
+    width: calc(100% + 2px)
+
+
+.incidents-chart
+  height: 180px
