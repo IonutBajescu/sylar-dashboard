@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof NotFoundHttpException) {
-            return response(file_get_contents(base_path('public/src/index.html')));
+            return response(file_get_contents(base_path('public/src/Index.html')));
         }
 
         return parent::render($request, $e);

@@ -11,9 +11,20 @@
 |
 */
 
+use Carbon\Carbon;
+
 $factory->define(App\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
     ];
+});
+
+$factory->define(App\Incident::class, function ($faker) {
+   return [
+       'impact' => rand(1, 9),
+       'url' => $faker->url,
+       'ip' => $faker->ipv4,
+       'attempted_at' => Carbon::instance($faker->dateTime)->year(2016)
+   ];
 });

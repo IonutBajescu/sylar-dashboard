@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactChartJS from 'react-chartjs';
-import ChartJS from 'chart.js';
+import Incidents from './../Infrastructure/Repositories/Incidents';
 
 export default class Dashboard extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             chartData: {
                 labels: ["February", "March", "April", "May", "June", "July"],
@@ -20,8 +21,29 @@ export default class Dashboard extends React.Component {
                         data: [59, 80, 81, 56, 55, 40]
                     }
                 ]
-            }
+            },
+            latestAttempts: []
         };
+
+        this.incidentsRepo = new Incidents();
+    }
+
+    componentDidMount() {
+        this.incidentsRepo.get({take: 3}).then(response => this.setState({latestAttempts: response.body()}));
+    }
+
+    renderLatestAttempt(incident) {
+        incident = incident.data();
+
+        return (
+            <tr key={incident.id}>
+                <td>{incident.id}</td>
+                <td>{incident.impact}</td>
+                <td><a href="">#132</a>, <a href="">#1337</a></td>
+                <td>{incident.ip}</td>
+                <td>{incident.attempted_at}</td>
+            </tr>
+        );
     }
 
     render() {
@@ -32,7 +54,7 @@ export default class Dashboard extends React.Component {
 
         return (
             <div className="ui grid">
-                <div className="mt5 negative row">
+                <div className="row">
                     <div className="sixteen wide column">
                         <h3><i className="line chart icon"></i> Incidents in the last six months</h3>
                         <div className="incidents-chart">
@@ -40,7 +62,7 @@ export default class Dashboard extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="mt3 negative row">
+                <div className="mt3 row">
                     <div className="sixteen wide column">
                         <h3><i className="wifi icon"></i> Latest attempts</h3>
                         <table className="ui basic divided celled attached table">
@@ -54,18 +76,12 @@ export default class Dashboard extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>432</td>
-                                <td>5</td>
-                                <td><a href="">#132</a>, <a href="">#1337</a></td>
-                                <td>127.0.0.1</td>
-                                <td>Today at 4pm</td>
-                            </tr>
+                                {this.state.latestAttempts.map(this.renderLatestAttempt)}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div className="mt3 negative row">
+                <div className="mt3 row">
                     <div className="eight wide column">
                         <h3><i className="align justify icon"></i> Most matched rules</h3>
                         <table className="ui divided celled attached table">

@@ -12,8 +12,14 @@ h1
 .clearfix
   clear: both
 
-.fixed.inverted.menu .item:last-child
-    margin-right: -1rem
+.attached.inverted.menu
+  margin-bottom: 2rem
+  > .container > .item
+    &:first-child
+      border-left: none !important
+    &:last-child
+      margin-right: -1rem
+
 
 .content.container
   min-height: calc(100vh - 19px - 40px)
@@ -36,9 +42,6 @@ h3
 .mt3
   margin-top: 3rem
 
-.negative.row
-  padding: 0 !important
-
 .table
   position: relative
   &:before
@@ -53,3 +56,11 @@ h3
 
 .incidents-chart
   height: 180px
+
+.site
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+  > .content
+    padding-bottom: 3rem
+    flex: 1
