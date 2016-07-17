@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 import { DashboardView } from 'dashboard';
-import { IncidentsListView } from 'incidents';
+import { IncidentsListView, IncidentPageView } from 'incidents';
 import Layout from 'infrastructure/layout';
 import 'babel-polyfill';
 import store from './redux';
@@ -36,6 +36,7 @@ render((
             <Route path="/" component={App}>
                 <IndexRoute component={DashboardView}/>
                 <Route path="incidents" component={IncidentsListView}/>
+                <Route path="incidents/:incidentId" component={IncidentPageView}/>
                 <Route path="*" component={NoMatch}/>
             </Route>
         </Router>

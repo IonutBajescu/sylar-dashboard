@@ -23,11 +23,21 @@ function* fetchAllIncidents() {
     }
 }
 
+function* fetchOneIncident(action) {
+    try {
+        const incident = yield (new IncidentsRepository).find(action.id)
+        yield put({type: "ONE_INCIDENT_FETCH_SUCCEEDED", incident});
+    } catch (e) {
+        yield put({type: "ONE_INCIDENT_FETCH_FAILED", message: e.message});
+    }
+}
+
 function* waitForSagaActions() {
     while (true) {
         yield [
             takeEvery("LATEST_INCIDENTS_FETCH_REQUESTED", fetchLatestIncidents),
-            takeEvery("ALL_INCIDENTS_FETCH_REQUESTED", fetchAllIncidents)
+            takeEvery("ALL_INCIDENTS_FETCH_REQUESTED", fetchAllIncidents),
+            takeEvery("ONE_INCIDENT_FETCH_REQUESTED", fetchOneIncident)
         ]
     }
 }
@@ -44,6 +54,12 @@ function reducer(state = [], action) {
             return {
                 ...state,
                 allIncidents: action.incidents.body()
+            }
+
+        case 'ONE_INCIDENT_FETCH_SUCCEEDED':
+            return {
+                ...state,
+                viewingIncident: action.incident.body()
             }
     }
 

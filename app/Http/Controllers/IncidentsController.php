@@ -19,7 +19,12 @@ class IncidentsController extends Controller
 
     public function index(Request $request)
     {
-        return Incident::take($request->get('take', 3))->get();
+        return $this->repo->take($request->get('take', 3))->get();
+    }
+
+    public function show($id)
+    {
+        return $this->repo->find($id);
     }
 
     public function store(Request $request)

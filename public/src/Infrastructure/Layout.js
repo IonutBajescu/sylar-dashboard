@@ -20,17 +20,17 @@ export default class Layout extends React.Component {
 
         return (
             <div className="site">
-                <div className="content">
-                    <div className="ui attached brand inverted menu">
-                        <div className="ui container">
-                            <div className="brand item">
-                                SYLAR
-                            </div>
-                            {menuItems.map(this.renderMenuLink)}
-                            <a href="#" className="right borderless item"><i className="sign out icon"></i> Logout</a>
+                <div className="ui attached brand inverted menu">
+                    <div className="ui container">
+                        <div className="brand item">
+                            SYLAR
                         </div>
+                        {menuItems.map(this.renderMenuLink)}
+                        <a href="#" className="right borderless item"><i className="sign out icon"></i> Logout</a>
                     </div>
+                </div>
 
+                <div className="content">
                     <div className="ui content container">
                         {this.props.children}
                     </div>

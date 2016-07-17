@@ -60,13 +60,13 @@ export default class DashboardView extends React.Component {
                         <table className="ui divided celled attached table">
                             <tbody>
                             <tr>
-                                <td>Rule <a href="">#1321</a> from the <a href="">PHPIDS</a> filters.</td>
+                                <td>Rule <a href="">#1321</a> from the <a href="">PHPIDS</a> filters set.</td>
                             </tr>
                             <tr>
-                                <td>Rule <a href="">#1232</a> from the <a href="">PHPIDS</a> filters.</td>
+                                <td>Rule <a href="">#1232</a> from the <a href="">PHPIDS</a> filters set.</td>
                             </tr>
                             <tr>
-                                <td>Rule <a href="">#3231</a> from the <a href="">PHPIDS</a> filters.</td>
+                                <td>Rule <a href="">#3231</a> from the <a href="">PHPIDS</a> filters set.</td>
                             </tr>
                             </tbody>
                         </table>

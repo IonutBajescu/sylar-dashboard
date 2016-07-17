@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,400italic)
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:600);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:600)
+@import '../semantic/dist/semantic.min'
 
 $darkColor: #357b65
 
@@ -28,10 +29,6 @@ h1
     &:last-child
       margin-right: -1rem
 
-
-.content.container
-  min-height: calc(100vh - 19px - 40px)
-
 .attached.brand.segment
   border: none
   &, a
@@ -50,9 +47,12 @@ h3
 .mt2
   margin-top: 2rem
 
+.mt3
+  margin-top: 3rem
+
 .table
   position: relative
-  &:before
+  &:not(.definition):before
     content: ''
     display: block
     position: absolute
@@ -60,6 +60,14 @@ h3
     top: -4px
     left: -1px
     width: calc(100% + 2px)
+  &.definition:before
+      content: ''
+      display: block
+      position: absolute
+      border-left: 4px solid $darkColor
+      left: -1px
+      top: -1px
+      height: calc(100% + 2px)
 
 
 .incidents-chart
@@ -70,5 +78,4 @@ h3
   min-height: 100vh
   flex-direction: column
   > .content
-    padding-bottom: 3rem
     flex: 1

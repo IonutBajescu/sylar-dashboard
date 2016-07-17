@@ -7,6 +7,10 @@ export default class IncidentsRepository extends AbstractRepository {
     }
 
     get(params) {
-        return this.collection.getAll(params);
+        return this.collection.getAll(params)
+    }
+
+    find(id) {
+        return this.http.one('incidents', id).get()
     }
 }

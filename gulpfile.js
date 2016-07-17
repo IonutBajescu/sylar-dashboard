@@ -3,18 +3,25 @@ var gulp       = require("gulp"),
     babelify   = require('babelify'),
     source     = require('vinyl-source-stream'),
     buffer     = require('vinyl-buffer'),
+    concat     = require('gulp-concat'),
     sass       = require('gulp-sass');
 
-gulp.task("scripts", function () {
+gulp.task("browserify", function () {
     return browserify({
             entries: [__dirname + '/public/src/index.js'],
             paths: [__dirname + '/public/src', __dirname + '/public/src/application']
         })
         .transform(babelify)
         .bundle()
-        .pipe(source('app.js'))
+        .pipe(source('browserify.js'))
         .pipe(buffer())
         .pipe(gulp.dest("public/dist"));
+});
+
+gulp.task('scripts', ['browserify'], () => {
+    return gulp.src(['public/app/resources/dist/semantic.min.js', 'public/dist/browserify.js'])
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('public/dist'))
 });
 
 gulp.task('sass', function () {
@@ -23,7 +30,13 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('public/dist'));
 });
 
-gulp.task('default', () => gulp.start('scripts', 'sass'));
+gulp.task('copy', () => (
+    gulp
+        .src('public/resources/semantic/dist/themes/**/*')
+        .pipe(gulp.dest('public/dist/themes'))
+))
+
+gulp.task('default', ['copy', 'scripts', 'sass']);
 
 gulp.task('watch', function () {
     gulp.start('default');
