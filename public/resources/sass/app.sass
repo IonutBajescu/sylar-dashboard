@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,400italic)
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:600);
 
 $darkColor: #357b65
 
@@ -13,10 +14,17 @@ h1
   clear: both
 
 .attached.inverted.menu
-  margin-bottom: 2rem
+  margin-bottom: 2.3rem
+
   > .container > .item
     &:first-child
       border-left: none !important
+      padding: 0 16px 0 0
+      font-family: "Source Sans Pro", sans-serif
+      font-weight: 600
+      letter-spacing: 1.5px
+      font-size: 1.2em
+      opacity: .7
     &:last-child
       margin-right: -1rem
 
@@ -39,8 +47,8 @@ h3
 .mt5
   margin-top: 5rem
 
-.mt3
-  margin-top: 3rem
+.mt2
+  margin-top: 2rem
 
 .table
   position: relative

@@ -23,6 +23,9 @@ export default class Layout extends React.Component {
                 <div className="content">
                     <div className="ui attached brand inverted menu">
                         <div className="ui container">
+                            <div className="brand item">
+                                SYLAR
+                            </div>
                             {menuItems.map(this.renderMenuLink)}
                             <a href="#" className="right borderless item"><i className="sign out icon"></i> Logout</a>
                         </div>

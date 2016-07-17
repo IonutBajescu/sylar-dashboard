@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactChartJS from 'react-chartjs';
-import Incidents from './../Infrastructure/Repositories/Incidents';
+import { LatestIncidentsView } from 'incidents';
 
-export default class Dashboard extends React.Component {
-
+export default class DashboardView extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,26 +23,13 @@ export default class Dashboard extends React.Component {
             },
             latestAttempts: []
         };
-
-        this.incidentsRepo = new Incidents();
     }
 
     componentDidMount() {
-        this.incidentsRepo.get({take: 3}).then(response => this.setState({latestAttempts: response.body()}));
-    }
-
-    renderLatestAttempt(incident) {
-        incident = incident.data();
-
-        return (
-            <tr key={incident.id}>
-                <td>{incident.id}</td>
-                <td>{incident.impact}</td>
-                <td><a href="">#132</a>, <a href="">#1337</a></td>
-                <td>{incident.ip}</td>
-                <td>{incident.attempted_at}</td>
-            </tr>
-        );
+        this.props.dispatch({
+            type: 'LATEST_INCIDENTS_FETCH_REQUESTED',
+            take: 3
+        })
     }
 
     render() {
@@ -62,26 +48,13 @@ export default class Dashboard extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="mt3 row">
+                <div className="mt2 row">
                     <div className="sixteen wide column">
                         <h3><i className="wifi icon"></i> Latest attempts</h3>
-                        <table className="ui basic divided celled attached table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Impact</th>
-                                <th>Matched</th>
-                                <th>IP</th>
-                                <th>At</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.latestAttempts.map(this.renderLatestAttempt)}
-                            </tbody>
-                        </table>
+                        <LatestIncidentsView/>
                     </div>
                 </div>
-                <div className="mt3 row">
+                <div className="mt2 row">
                     <div className="eight wide column">
                         <h3><i className="align justify icon"></i> Most matched rules</h3>
                         <table className="ui divided celled attached table">

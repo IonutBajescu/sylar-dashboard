@@ -1,9 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
-import Dashboard from './Application/Dashboard';
-import IncidentsList from './Application/IncidentsList';
-import Layout from './Infrastructure/Layout';
+import { DashboardView } from 'dashboard';
+import { IncidentsListView } from 'incidents';
+import Layout from 'infrastructure/layout';
+import 'babel-polyfill';
+import store from './redux';
+import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
     render() {
@@ -27,11 +31,13 @@ class NoMatch extends React.Component {
 }
 
 render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Dashboard}/>
-            <Route path="incidents" component={IncidentsList}/>
-            <Route path="*" component={NoMatch}/>
-        </Route>
-    </Router>
+    <Provider store={store}>
+        <Router history={browserHistory}>
+            <Route path="/" component={App}>
+                <IndexRoute component={DashboardView}/>
+                <Route path="incidents" component={IncidentsListView}/>
+                <Route path="*" component={NoMatch}/>
+            </Route>
+        </Router>
+    </Provider>
 ), document.getElementById('sylar-root'));

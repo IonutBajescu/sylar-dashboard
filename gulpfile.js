@@ -6,7 +6,10 @@ var gulp       = require("gulp"),
     sass       = require('gulp-sass');
 
 gulp.task("scripts", function () {
-    return browserify([__dirname + '/public/src/index.js'])
+    return browserify({
+            entries: [__dirname + '/public/src/index.js'],
+            paths: [__dirname + '/public/src', __dirname + '/public/src/application']
+        })
         .transform(babelify)
         .bundle()
         .pipe(source('app.js'))

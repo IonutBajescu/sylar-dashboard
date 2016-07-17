@@ -1,8 +1,6 @@
-'use strict';
+import AbstractRepository from 'infrastructure/abstract.repository';
 
-import AbstractRepository from './AbstractRepository';
-
-export default class Incidents extends AbstractRepository {
+export default class IncidentsRepository extends AbstractRepository {
     constructor() {
         super();
         this.collection = this.http.all('incidents');
